@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { parseCookies, setCookie } from 'nookies';
 
+const SEARCH_RESULT_CATFISH_DISPLAY = 'searchResultCatfishDisplay';
+
 const Toolbar = ({ visible, onHide }) => {
   return (
     <div style={{ display: visible ? 'block' : 'none' }}>
@@ -15,7 +17,7 @@ const Home = () => {
 
   useEffect(() => {
     const cookies = parseCookies();
-    const showToolbarCookie = cookies['showToolbar'];
+    const showToolbarCookie = cookies[SEARCH_RESULT_CATFISH_DISPLAY];
     if (showToolbarCookie === 'false') {
       setShowToolbar(false);
     }
@@ -23,7 +25,7 @@ const Home = () => {
 
   const handleHideToolbar = () => {
     setShowToolbar(false);
-    setCookie(null, 'showToolbar', 'false', { maxAge: 7200 });
+    setCookie(null, SEARCH_RESULT_CATFISH_DISPLAY, 'false', { maxAge: 7200 });
   };
 
   return (
